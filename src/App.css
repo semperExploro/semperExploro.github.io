@@ -13,9 +13,13 @@
   }
 }
 
+a:hover {
+  color: #a5a5a5;
+}
+
 
 .left-bar {
-  background-color: #1000be;
+  background-color: #ffffff;
   height: 100vh;
   width: 20vw;
   position: fixed;
@@ -24,7 +28,7 @@
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  color: rgb(255, 255, 255)
+  color: rgb(0, 0, 0)
 }
 
 .right-section {
