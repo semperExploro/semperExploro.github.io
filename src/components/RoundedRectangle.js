@@ -1,23 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const RoundedRectangle = ({ to, text }) => {
+const RoundedRectangle = ({ to, text, title }) => {
   const style = {
     display: 'inline-block',
-    padding: '10px 20px',
-    backgroundColor: '#007BFF',
-    color: 'white',
-    borderRadius: '25px',
+    padding: '20px',
+    backgroundColor: 'white',
+    color: 'black',
+    borderRadius: '10px',
     textDecoration: 'none',
-    textAlign: 'center',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', // Add shadowing
+    textAlign: 'left',
+    width: '300px',
+    border: '1px solid lightgrey', // Add this line
+    marginBottom: '20px', // Add margin at the bottom
+  };
+
+  const titleStyle = {
+    fontSize: '20px',
+    fontWeight: 'bold',
+    marginBottom: '10px',
   };
 
   return (
     <Link to={to} style={style}>
-      {text}
+      <div style={titleStyle}>{title}</div>
+      <div>{text}</div>
     </Link>
   );
-};
+}
 
 export default RoundedRectangle;

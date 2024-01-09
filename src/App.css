@@ -38,9 +38,10 @@ a:hover {
   position: fixed;
   top: 0;
   right: 0;
+  display: flex; /* Add this if it's not already a flex container */
   flex-direction: column;
-  align-items: left;
-  justify-content: center;
+  align-items: flex-start; /* Change this from 'left' to 'flex-start' */
+  justify-content: left;
   color: rgb(0, 0, 0)
 }
 
