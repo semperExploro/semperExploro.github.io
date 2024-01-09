@@ -15,44 +15,47 @@ const sideBarText = () => {
     <div style = {{marginTop: "10px", fontSize: "20px"}}> 
     <Divider length="220px" />
     <div style = {{marginTop: "10px", fontSize: "15px", color:"#333333",fontWeight: "600" }}> Cloud and Machine Learning</div>
-    <div style = {{fontSize: "15px",color:"#333333",fontWeight: "600"}}>Engineer</div>
     </div>
     <div style = {{marginTop: "10px", fontSize: "20px"}}> 
     <Divider length="220px" />
     </div>
     <div>
-    <a href="https://curveassure.com" target="_blank" rel="noopener noreferrer" style={{ color: '#333333', textDecoration: 'none', fontSize: "15px" }}>
+    <a href="https://curveassure.com" target="_blank" rel="noopener noreferrer" style={{ color: '#333333', textDecoration: 'none', fontSize: "13px" }}>
       Chief Cloud Engineer @
     </a>
     </div>
     <div>
-    <a href="https://curveassure.com" target="_blank" rel="noopener noreferrer" style={{ color: '#333333', textDecoration: 'none' }}>
+    <a href="https://curveassure.com" target="_blank" rel="noopener noreferrer" style={{ color: '#333333', textDecoration: 'none', fontSize: "13px"  }}>
       CurveAssure
     </a>
     </div>
     <div style={{marginTop: "10px"}}>
-    <a href="https://github.com/JHU-Xtractor" target="_blank" rel="noopener noreferrer" style={{ color: '#333333', textDecoration: 'none', fontSize: "15px" }}>
+    <a href="https://github.com/JHU-Xtractor" target="_blank" rel="noopener noreferrer" style={{ color: '#333333', textDecoration: 'none', fontSize: "13px" }}>
       Frontend/Cloud Architect @
     </a>
     </div>
     <div>
-    <a href="https://github.com/JHU-Xtractor" target="_blank" rel="noopener noreferrer" style={{ color: '#333333', textDecoration: 'none' }}>
+    <a href="https://github.com/JHU-Xtractor" target="_blank" rel="noopener noreferrer" style={{ color: '#333333', textDecoration: 'none', fontSize: "13px"  }}>
       Xtractor
     </a>
     </div>
     <div style={{marginTop: "10px"}}>
     <Divider length="220px" />
     </div>
-    <div style={{marginTop: "10px"}}>
+    <div style={{marginTop: "10px", fontSize: "13px" }}>
       jonathanjymd@gmail.com
     </div>
     <Divider length="220px" />
-    <div style={{marginTop: "10px"}}>
+    <div style={{marginTop: "10px", fontSize: "13px" }}>
       Johns Hopkins University
     </div>
     <div 
-    style={{marginTop: "10px", fontSize: "14px"}}>
-      MSE Comp. Science, BS Comp. Engineering
+    style={{marginTop: "10px", fontSize: "13px"}}>
+      MSE Comp. Science '24'
+    </div>
+    <div
+    style={{marginTop: "2px", fontSize: "13px"}}>
+      BS Comp. Engineering '23'
     </div>
     </header>
   )
