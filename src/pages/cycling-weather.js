@@ -2,22 +2,23 @@ import React, { useState ,useEffect} from "react"
 import '../App.css';
 import { GetWeather } from "../util/weather";
 import { GetCurrentPosition}  from "../util/currentPosition";
-
+import UpperRect from "../components/UpperRectangle";
 import VerticalRoundedRectangle from "../components/VerticalRectangle";
+import Taskbar from "../components/Taskbar";
 
 class Day {
 
-    constructor(date) {
+    constructor(date, weatherCondition) {
         this.date = date;
         this.wspdList = [];
         this.tempList = [];
         this.precipList = [];
         this.timeList = [];
         this.isDay = [];
+        this.weatherCondition = weatherCondition;
     }
     
     setInfo(wspdList,tempList,precipList,timeList, isDay) {
-        this.date = date;
         this.wspdList = wspdList;
         this.tempList = tempList;
         this.precipList = precipList;
@@ -117,11 +118,21 @@ const getRectangle = (day) => {
         windows[i] = windows[i][0] + " - " + windows[i][1];
     }
 
+    console.log(day.weatherCondition)
+
     return (
         <span>
-            <VerticalRoundedRectangle title={day.date} text={windows} />
+            <VerticalRoundedRectangle title={day.date} text={windows} day = {getWeekday(day.date)} weatherCond = {day.weatherCondition}></VerticalRoundedRectangle>
         </span>
     )
+}
+
+const getWeekday = (date) => {
+    console.log(date);
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var d = new Date(date.replace(/-/g, '/'));
+    var dayName = days[d.getUTCDay()];
+    return dayName;
 }
 
 const initDays = (periods) => {
@@ -131,26 +142,19 @@ const initDays = (periods) => {
     var isDay = [];
     var precip = [];
     var wind = [];
-    var date = null;
-    var dateObj = null;
+    var date = periods[0].startTime.substring(0,10);
+    var weatherCondition = periods[0].shortForecast;
+    var dateObj = new Day(date, weatherCondition);
 
     console.log(periods);
+
 
     for (var i = 0; i < periods.length; i++) {
         if (periods[i].startTime.substring(0,10) !== date) {
             // we have a new day
-
-            date = periods[i].startTime.substring(0,10);
-
-            /* Create A New Object*/
-            // check if it's null
-            if (dateObj == null) {
-                dateObj = 1;
-                continue;
-            }
-
-            //create a new day object
-            dateObj = new Day(date,wind,temps,precip,times,isDay);
+            //set the info for the previous day
+            dateObj.setInfo(wind,temps,precip,times,isDay);
+            days.push(dateObj);
 
             //clear the lists
             times = [];
@@ -159,8 +163,11 @@ const initDays = (periods) => {
             precip = [];
             wind = [];
 
-            //add the new day
-            days.push(dateObj);
+            date = periods[i].startTime.substring(0,10);
+            //create a new day object
+            weatherCondition = periods[i].shortForecast;
+            console.log(weatherCondition);
+            dateObj = new Day(date, weatherCondition);
 
         } else {
 
@@ -183,9 +190,16 @@ const initDays = (periods) => {
 }
 
 const CyclingWeather = () => {
+
     const [weather, setWeather] = useState(null);
     const [location, setLocation] = useState(null);
     const [days, setDays] = useState(null);
+    const [currentWindow, setCurrentWindow] = useState(null);
+    
+    /*tabs*/
+    useEffect(() => {
+        document.title = 'Cycling Weather';
+      }, []);
 
     useEffect(() => {
         
@@ -197,15 +211,25 @@ const CyclingWeather = () => {
             const lat = result.coords.latitude;
             const long = result.coords.longitude;
 
-            // console.log(lat);
-            // console.log(long);
-
             //get weather
             const weatherResult = await GetWeather(lat,long);
             setWeather(weatherResult);
 
             //initialize days
             let listOfDays = initDays(weatherResult);
+    
+
+            //set today
+            var today = listOfDays[0];
+            var todayWindows = today.getViableTimes();
+            if (todayWindows.length == 0) {
+                todayWindows = ["No Viable Times"]
+            }
+            setCurrentWindow(todayWindows);
+
+            //remove today
+            listOfDays.shift();
+
             setDays(listOfDays);
         };
         fetchLocation();
@@ -214,17 +238,19 @@ const CyclingWeather = () => {
 
     return (
         <div className="Center">
+            <Taskbar />
           {days === null ? (
             <div>To start, please enable your location</div>
           ) : (
             <div>
-                <div style={{ marginBottom: '20px' }}>Best Riding Conditions for the next 7 days</div>                <div className="rectangle-grid">
+                    <UpperRect title={location.coords.latitude + ", " + location.coords.longitude} text={currentWindow} />
+                    <div>
                     {days.map((day) => (
                         <span>
                             {getRectangle(day)}
                         </span>
                     ))}
-                </div>
+                    </div>
             </div>
           )}
         </div>

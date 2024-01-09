@@ -1,0 +1,63 @@
+.taskbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: space-between;
+
+  }
+  
+  .taskbar {
+    display: flex;
+    align-items: center;
+    background-color: #eeeeee; /* Grey color */
+    color: #000000; /* Text color */
+    height: 40px;
+    padding: 0 10px;
+    justify-content: flex-start;
+    border-bottom: 1px solid #c7c7c7;
+
+  }
+  
+  .spacer {
+    width: 5px; /* Adjust the value as needed */
+  }
+
+  .start-button {
+    text-decoration: none;
+  }
+
+  .start-menu {
+    cursor: pointer;
+    margin-left: 30px;
+    font-size: 14px;
+    color: #777777;
+}
+  .title {
+    cursor: pointer;
+    margin-left: 7px;
+    font-size: 17px;
+    color:rgb(114, 114, 114);
+    margin-bottom: 4px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff; /* Dropdown background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-menu > div {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .taskbar-item {
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
