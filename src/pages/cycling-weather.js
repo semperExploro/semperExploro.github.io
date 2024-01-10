@@ -6,6 +6,8 @@ import UpperRect from "../components/UpperRectangle";
 import VerticalRoundedRectangle from "../components/VerticalRectangle";
 import Taskbar from "../components/Taskbar";
 
+
+
 class Day {
 
     constructor(date, weatherCondition) {
@@ -101,6 +103,13 @@ class Day {
         return windows;
     }
 }
+
+const captionStyle = {
+    fontSize: '10px',
+    marginBottom: '10px',
+    marginTop: '10px',
+    color: '#808080', // Change this to the color you want
+};
 
 const getRectangle = (day) => {
 
@@ -237,6 +246,7 @@ const CyclingWeather = () => {
     );
 
     return (
+        <div>
         <div className="Center">
             <Taskbar />
           {days === null ? (
@@ -254,6 +264,8 @@ const CyclingWeather = () => {
             </div>
           )}
         </div>
+        <div style={captionStyle}>{"Criteria For Viability For Outdoor Activities: Winds Less Than 15 mph, Temperature Between 30 F and 90 F, No Rain, No Night Activities"}</div>
+    </div>
       );
 
 }

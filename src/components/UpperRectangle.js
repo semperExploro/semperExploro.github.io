@@ -44,7 +44,8 @@ const UpperRect = ({text, title }) => {
         <span style={subtitleStyle}>Riding Options For Today: </span>
           {text.map((t, index) => (
         <span style = {subtitleStyle} key={index}>{t}</span>
-      ))}
+      )
+      )}
     </div>
   );
 }
