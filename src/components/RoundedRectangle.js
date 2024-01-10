@@ -13,6 +13,7 @@ const RoundedRectangle = ({ to, text, title }) => {
     width: '300px',
     border: '1px solid lightgrey', // Add this line
     marginBottom: '20px', // Add margin at the bottom
+    fontSize: '15px',
   };
 
   const titleStyle = {
